@@ -970,7 +970,8 @@ spec:
                 backend:
                   serviceName: productpage
                   servicePort: 9080
-----
+
+---
 apiVersion: app.ibm.com/v1alpha1
 kind: Deployable
 metadata:
@@ -1006,4 +1007,4 @@ spec:
             url: /login
         - testName: productapi
           http:
-            url: /api/v1/products                 
+            url: /api/v1/products
