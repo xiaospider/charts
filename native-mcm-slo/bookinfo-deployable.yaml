@@ -986,9 +986,9 @@ spec:
     apiVersion: monitoring.ibm.com/v1alpha1
     kind: Synthetic
     metadata:
-      name: {{ template "bookinfochannel.name" . }}-ingress
+      name: bookinfo-demo-ingress
       labels: 
-        app: {{ template "bookinfochannel.name" . }}
+        app: bookinfo-demo
         service: productpage
     spec:
       interval: 1m
