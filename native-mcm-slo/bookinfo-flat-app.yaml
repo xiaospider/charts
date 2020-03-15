@@ -1,0 +1,65 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    purpose: icam-demo
+  name: bookinfo-flat-subscription
+  namespace: bookinfo-project
+spec:
+  channel: bookinfo-source/bookinfo-ns-channel
+  packageFilter:
+    labelSelector:
+      matchLabels:
+        appname: bookinfo-demo
+      matchExpressions:
+        - key: monitoring
+          operator: NotIn
+          values:
+          - "yes"
+  placement:
+    placementRef:
+      name: demo-placementrule
+      kind: PlacementRule
+  overrides:
+  - clusterName: "/"
+    clusterOverrides:
+    - path: "metadata.namespace"
+      value: bookinfo
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    purpose: icam-demo
+  name: bookinfo-synthetic-subscription
+  namespace: bookinfo-project
+spec:
+  channel: bookinfo-source/bookinfo-ns-channel
+  packageFilter:
+    labelSelector:
+      matchLabels:
+        appname: bookinfo-demo
+        monitoring: true
+  placement:
+    local: true
+  overrides:
+  - clusterName: "/"
+    clusterOverrides:
+    - path: "metadata.namespace"
+      value: bookinfo-monitoring
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: bookinfo-app
+  namespace: bookinfo-project
+spec:
+  selector:
+    matchExpressions:
+    - key: purpose
+      operator: In
+      values:
+      - icam-demo
+  componentKinds:
+  - group: app.ibm.com/v1alpha1
+    kind: Subscription
