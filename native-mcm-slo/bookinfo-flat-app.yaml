@@ -39,9 +39,10 @@ spec:
     labelSelector:
       matchLabels:
         appname: bookinfo-demo
-        monitoring: true
+        monitoring: "true"
   placement:
-    local: true
+    clusters: 
+      - local: true
   overrides:
   - clusterName: "/"
     clusterOverrides:
