@@ -1,0 +1,20 @@
+# Create a Channel that declares resources that can be deployed
+# Channel can be a Namespace, Object Store Bucket, or Helm Repo
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: bookinfo-channel
+  namespace: bookinfo-entitlement
+spec:
+  pathname: https://raw.githubusercontent.com/xiaospider/charts/master/repo/incubator/
+  configRef:
+    name: insecure-skip-verify
+  type: HelmRepo
+---
+apiVersion: v1
+data:
+  insecureSkipVerify: "true"
+kind: ConfigMap
+metadata:
+  name: insecure-skip-verify
+  namespace: bookinfo-entitlement
