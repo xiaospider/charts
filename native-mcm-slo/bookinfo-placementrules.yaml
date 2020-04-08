@@ -9,7 +9,7 @@ metadata:
 spec:
   clusterLabels:
     matchLabels:
-      environment: Dev
+      environment: Test
   clusterReplicas: 1
 ---
 apiVersion: app.ibm.com/v1alpha1
