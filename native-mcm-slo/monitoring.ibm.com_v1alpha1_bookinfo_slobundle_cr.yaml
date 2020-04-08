@@ -1,0 +1,22 @@
+apiVersion: monitoring.ibm.com/v1alpha1
+kind: SloBundle
+metadata:
+  name: bookinfo-slos
+  namespace: bookinfo-project
+  labels: 
+    app: bookinfo
+    release: 1.0.1
+spec:
+  syntheticRef:
+    name: bookinfo-synthetic
+  slos:
+    - name: Products API
+      objective:
+        target: 99%
+        measurementWindow: 168h
+      sli:
+        metricFilter:
+          url: /productpage
+        measurementType: latency
+        threshold: 
+          max: 200ms
