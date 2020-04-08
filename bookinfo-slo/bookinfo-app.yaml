@@ -32,9 +32,9 @@ spec:
           replicaCount: 1
         reviews:
           replicaCount: 1
-        ratings
+        ratings:
           replicaCount: 1
-        productpage
+        productpage:
           replicaCount: 2
         mysqldb:
           replicaCount: 1
