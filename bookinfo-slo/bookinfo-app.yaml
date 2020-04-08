@@ -4,7 +4,7 @@ metadata:
   labels:
     purpose: icam-demo
   name: bookinfo-subscription
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
 spec:
   channel: bookinfo-entitlement/bookinfo-channel
   name: bookinfo
@@ -43,7 +43,7 @@ apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   name: bookinfo-app-1
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
 spec:
   selector:
     matchExpressions:
@@ -59,7 +59,7 @@ apiVersion: app.ibm.com/v1alpha1
 kind: PlacementRule
 metadata:
   name: dev-placementrule
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
   generation: 1
   labels:
     purpose: icam-demo
@@ -73,7 +73,7 @@ apiVersion: app.ibm.com/v1alpha1
 kind: PlacementRule
 metadata:
   name: production-placementrule
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
   generation: 1
   labels:
     purpose: icam-demo
@@ -87,7 +87,7 @@ apiVersion: app.ibm.com/v1alpha1
 kind: PlacementRule
 metadata:
   name: demo-placementrule
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
   generation: 1
   labels:
     purpose: icam-demo

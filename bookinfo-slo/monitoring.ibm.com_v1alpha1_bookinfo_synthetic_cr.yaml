@@ -2,7 +2,7 @@ apiVersion: monitoring.ibm.com/v1alpha1
 kind: SyntheticBundle
 metadata:
   name: bookinfo-synthetic
-  namespace: bookinfo-project
+  namespace: bookinfo-project-1
   labels: 
     app: bookinfo
     release: 1.0.1
