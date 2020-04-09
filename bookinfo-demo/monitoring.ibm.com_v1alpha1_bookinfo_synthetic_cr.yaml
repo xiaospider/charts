@@ -14,19 +14,14 @@ spec:
     name: bookinfo-demo
   interval: 1m
   tests: 
-    - testName: Home page
-      syntheticType: SeleniumLoad
-      configuration:
-        url: /productpage
-    - testName: login
-      configuration:
-        url: /login
-    - testName: logout
-      configuration:
-        url: /logout
     - testName: productapi
       configuration:
         url: /api/v1/products
+    - testName: login
+      configuration:
+        url: /login
+
+    
 
 
 
