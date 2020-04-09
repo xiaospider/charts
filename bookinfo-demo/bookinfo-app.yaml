@@ -12,7 +12,7 @@ spec:
     version: 1.0.9
   placement:
     placementRef:
-      name: demo-placementrule
+      name: dev-placementrule
       kind: PlacementRule
   overrides:
   - clusterName: "/"
@@ -27,17 +27,7 @@ spec:
     - path: spec.values
       value: |
         ingress:
-          host: bam-all.fyre.ibm.com
-        details:
-          replicaCount: 1
-        reviews:
-          replicaCount: 1
-        ratings:
-          replicaCount: 1
-        productpage:
-          replicaCount: 2
-        mysqldb:
-          replicaCount: 1
+          host: icam-test1-icammaster1.fyre.ibm.com
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
