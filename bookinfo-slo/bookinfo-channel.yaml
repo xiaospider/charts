@@ -6,7 +6,7 @@ metadata:
   name: bookinfo-channel
   namespace: bookinfo-entitlement
 spec:
-  pathname: https://raw.githubusercontent.com/xiaospider/charts/master/repo/incubator/
+  pathname: https://raw.githubusercontent.com/rongzhus/subscription-examples/master/charts/repo/incubator/
   configRef:
     name: insecure-skip-verify
   type: HelmRepo
