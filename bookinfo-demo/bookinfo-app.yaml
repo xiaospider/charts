@@ -9,7 +9,7 @@ spec:
   channel: bookinfo-entitlement/bookinfo-channel
   name: bookinfo
   packageFilter:
-    version: 1.1.0
+    version: 1.0.9
   placement:
     placementRef:
       name: demo-placementrule
