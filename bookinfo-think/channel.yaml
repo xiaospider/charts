@@ -22,7 +22,7 @@ spec:
   - bookinfo-ch-stagging
   gates:
     annotations:
-      slo-ready: approved
+      slo-stagging-ready: approved
 
 ---
 apiVersion: app.ibm.com/v1alpha1
@@ -37,7 +37,7 @@ spec:
   - bookinfo-ch-pre-prod
   gates:
     annotations:
-      slo-ready: approved
+      slo-pre-prod-ready: approved
 
 ---
 apiVersion: v1
