@@ -18,7 +18,7 @@ spec:
   - clusterName: "/"
     clusterOverrides:
     - path: "metadata.namespace"
-      value: placementrule-stagging
+      value: bookinfo-stagging
   packageOverrides:
   - packageName: bookinfo
     packageOverrides:
