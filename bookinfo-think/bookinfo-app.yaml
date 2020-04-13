@@ -1,0 +1,89 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    purpose: icam-demo
+  name: bookinfo-subscription-stagging
+  namespace: bookinfo-project-think
+spec:
+  channel: bookinfo-ch-stagging/bookinfo-stagging
+  name: bookinfo
+  packageFilter:
+    version: 1.0.8
+  placement:
+    placementRef:
+      name: placementrule-stagging
+      kind: PlacementRule
+  overrides:
+  - clusterName: "/"
+    clusterOverrides:
+    - path: "metadata.namespace"
+      value: placementrule-stagging
+  packageOverrides:
+  - packageName: bookinfo
+    packageOverrides:
+    - path: spec.releaseName
+      value: bookinfo-demo
+    - path: spec.values
+      value: |
+        ingress:
+          host: stagging.apps.ocpzhouhn.os.fyre.ibm.com
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: bookinfo-app-think
+  namespace: bookinfo-project-think
+spec:
+  selector:
+    matchExpressions:
+    - key: purpose
+      operator: In
+      values:
+      - icam-demo
+  componentKinds:
+  - group: app.ibm.com/v1alpha1
+    kind: Subscription
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: placementrule-stagging
+  namespace: bookinfo-project-think
+  generation: 1
+  labels:
+    purpose: icam-demo
+spec:
+  clusterLabels:
+    matchLabels:
+      think: stagging
+  clusterReplicas: 1
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: placementrule-pre-prod
+  namespace: bookinfo-project-think
+  generation: 1
+  labels:
+    purpose: icam-demo
+spec:
+  clusterLabels:
+    matchLabels:
+      think: pre-prod
+  clusterReplicas: 1
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: placementrule-prod
+  namespace: bookinfo-project-think
+  generation: 1
+  labels:
+    purpose: icam-demo
+spec:
+  clusterLabels:
+    matchLabels:
+      think: prod
+  clusterReplicas: 1
+

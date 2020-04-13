@@ -1,0 +1,49 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: bookinfo-stagging
+  namespace: bookinfo-ch-stagging
+spec:
+  pathname: https://raw.githubusercontent.com/rongzhus/subscription-examples/master/charts/repo/incubator/
+  configRef:
+    name: insecure-skip-verify
+  type: HelmRepo
+
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: bookinfo-pre-pod
+  namespace: bookinfo-ch-pre-prod
+spec:
+  type: Namespace
+  pathname: bookinfo-ch-pre-prod
+  sourceNamespaces:
+  - bookinfo-ch-stagging
+  gates:
+    annotations:
+      slo-ready: approved
+
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: bookinfo-pod
+  namespace: bookinfo-ch-prod
+spec:
+  type: Namespace
+  pathname: bookinfo-ch-prod
+  sourceNamespaces:
+  - bookinfo-ch-pre-prod
+  gates:
+    annotations:
+      slo-ready: approved
+
+---
+apiVersion: v1
+data:
+  insecureSkipVerify: "true"
+kind: ConfigMap
+metadata:
+  name: insecure-skip-verify
+  namespace:  bookinfo-ch-stagging

@@ -1,0 +1,19 @@
+apiVersion: monitoring.ibm.com/v1alpha1
+kind: SloBundle
+metadata:
+  name: bookinfo-slos
+  namespace: bookinfo-project-think
+spec:
+  syntheticRef:
+    name: bookinfo-synthetics
+  slos:
+    - name: 99_productAPI_latency_lt_200
+      objective:
+        target: 99%
+        measurementWindow: 168h
+      sli:
+        metricFilter:
+          url: /api/v1/products
+        measurementType: latency
+        threshold:
+          max: 200ms

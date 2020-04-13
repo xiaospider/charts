@@ -1,0 +1,19 @@
+apiVersion: monitoring.ibm.com/v1alpha1
+kind: SyntheticBundle
+metadata:
+  name: bookinfo-synthetics
+  namespace: bookinfo-project-think
+spec:
+  applicationRef:
+    name: bookinfo-app-think
+  ingressRef:
+    type: ingress
+    name: bookinfo-demo
+  interval: 1m
+  tests:
+    - testName: productapi
+      configuration:
+        url: /api/v1/products
+    - testName: login
+      configuration:
+        url: /login
