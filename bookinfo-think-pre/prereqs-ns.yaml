@@ -11,7 +11,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata: 
-  name: bookinfo-ch-pre-prod
+  name: bookinfo-ch-preprod
 ---
 apiVersion: v1
 kind: Namespace
