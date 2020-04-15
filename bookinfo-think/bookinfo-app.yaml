@@ -27,7 +27,69 @@ spec:
     - path: spec.values
       value: |
         ingress:
-          host: stagging.apps.ocpzhouhn.os.fyre.ibm.com
+          host: bookinfo.stagging.9.30.206.126.nip.io
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    purpose: icam-demo
+  name: bookinfo-subscription-prepod
+  namespace: bookinfo-project-think
+spec:
+  channel: bookinfo-ch-pre-prod/bookinfo-pre-pod
+  name: bookinfo
+  packageFilter:
+    version: 1.0.8
+  placement:
+    placementRef:
+      name: placementrule-stagging
+      kind: PlacementRule
+  overrides:
+  - clusterName: "/"
+    clusterOverrides:
+    - path: "metadata.namespace"
+      value: bookinfo-prepod
+  packageOverrides:
+  - packageName: bookinfo
+    packageOverrides:
+    - path: spec.releaseName
+      value: bookinfo-demo
+    - path: spec.values
+      value: |
+        ingress:
+          host: bookinfo.prepod.9.30.206.126.nip.io
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    purpose: icam-demo
+  name: bookinfo-subscription-pod
+  namespace: bookinfo-project-think
+spec:
+  channel: bookinfo-ch-prod/bookinfo-pod
+  name: bookinfo
+  packageFilter:
+    version: 1.0.8
+  placement:
+    placementRef:
+      name: placementrule-stagging
+      kind: PlacementRule
+  overrides:
+  - clusterName: "/"
+    clusterOverrides:
+    - path: "metadata.namespace"
+      value: bookinfo-pod
+  packageOverrides:
+  - packageName: bookinfo
+    packageOverrides:
+    - path: spec.releaseName
+      value: bookinfo-demo
+    - path: spec.values
+      value: |
+        ingress:
+          host: bookinfo.pod.9.30.206.126.nip.io
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
