@@ -13,11 +13,11 @@ spec:
 apiVersion: app.ibm.com/v1alpha1
 kind: Channel
 metadata:
-  name: bookinfo-pre-pod
-  namespace: bookinfo-ch-pre-prod
+  name: bookinfo-preprod
+  namespace: bookinfo-ch-preprod
 spec:
   type: Namespace
-  pathname: bookinfo-ch-pre-prod
+  pathname: bookinfo-ch-preprod
   sourceNamespaces:
   - bookinfo-ch-stagging
   gates:
@@ -28,16 +28,16 @@ spec:
 apiVersion: app.ibm.com/v1alpha1
 kind: Channel
 metadata:
-  name: bookinfo-pod
+  name: bookinfo-prod
   namespace: bookinfo-ch-prod
 spec:
   type: Namespace
   pathname: bookinfo-ch-prod
   sourceNamespaces:
-  - bookinfo-ch-pre-prod
+  - bookinfo-ch-preprod
   gates:
     annotations:
-      slo-pre-prod-ready: approved
+      slo-preprod-ready: approved
 
 ---
 apiVersion: v1

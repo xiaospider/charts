@@ -34,22 +34,22 @@ kind: Subscription
 metadata:
   labels:
     purpose: icam-demo
-  name: bookinfo-subscription-prepod
+  name: bookinfo-subscription-preprod
   namespace: bookinfo-project-think
 spec:
-  channel: bookinfo-ch-pre-prod/bookinfo-pre-pod
+  channel: bookinfo-ch-preprod/bookinfo-preprod
   name: bookinfo
   packageFilter:
     version: 1.0.8
   placement:
     placementRef:
-      name: placementrule-stagging
+      name: placementrule-preprod
       kind: PlacementRule
   overrides:
   - clusterName: "/"
     clusterOverrides:
     - path: "metadata.namespace"
-      value: bookinfo-prepod
+      value: bookinfo-preprod
   packageOverrides:
   - packageName: bookinfo
     packageOverrides:
@@ -58,29 +58,29 @@ spec:
     - path: spec.values
       value: |
         ingress:
-          host: bookinfo.prepod.9.30.206.126.nip.io
+          host: bookinfo.preprod.9.30.206.126.nip.io
 ---
 apiVersion: app.ibm.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
     purpose: icam-demo
-  name: bookinfo-subscription-pod
+  name: bookinfo-subscription-prod
   namespace: bookinfo-project-think
 spec:
-  channel: bookinfo-ch-prod/bookinfo-pod
+  channel: bookinfo-ch-prod/bookinfo-prod
   name: bookinfo
   packageFilter:
     version: 1.0.8
   placement:
     placementRef:
-      name: placementrule-stagging
+      name: placementrule-prod
       kind: PlacementRule
   overrides:
   - clusterName: "/"
     clusterOverrides:
     - path: "metadata.namespace"
-      value: bookinfo-pod
+      value: bookinfo-prod
   packageOverrides:
   - packageName: bookinfo
     packageOverrides:
@@ -89,7 +89,7 @@ spec:
     - path: spec.values
       value: |
         ingress:
-          host: bookinfo.pod.9.30.206.126.nip.io
+          host: bookinfo.prod.9.30.206.126.nip.io
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
@@ -124,7 +124,7 @@ spec:
 apiVersion: app.ibm.com/v1alpha1
 kind: PlacementRule
 metadata:
-  name: placementrule-pre-prod
+  name: placementrule-preprod
   namespace: bookinfo-project-think
   generation: 1
   labels:
@@ -132,7 +132,7 @@ metadata:
 spec:
   clusterLabels:
     matchLabels:
-      think: pre-prod
+      think: stagging
   clusterReplicas: 1
 ---
 apiVersion: app.ibm.com/v1alpha1
@@ -146,6 +146,6 @@ metadata:
 spec:
   clusterLabels:
     matchLabels:
-      think: prod
+      think: stagging
   clusterReplicas: 1
 
