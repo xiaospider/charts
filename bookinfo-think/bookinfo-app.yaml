@@ -9,7 +9,7 @@ spec:
   channel: bookinfo-ch-stagging/bookinfo-stagging
   name: bookinfo
   packageFilter:
-    version: 1.0.8
+    version: 2.1.3
   placement:
     placementRef:
       name: placementrule-stagging
@@ -68,7 +68,7 @@ spec:
   channel: bookinfo-ch-prod/bookinfo-prod
   name: bookinfo
   packageFilter:
-    version: 1.0.8
+    version: 2.1.3
   placement:
     placementRef:
       name: placementrule-prod
