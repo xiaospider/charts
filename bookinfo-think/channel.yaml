@@ -18,6 +18,8 @@ metadata:
 spec:
   type: Namespace
   pathname: bookinfo-ch-preprod
+  configRef:
+    name: insecure-skip-verify
   sourceNamespaces:
   - bookinfo-ch-stagging
   gates:
