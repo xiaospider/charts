@@ -38,9 +38,6 @@ metadata:
   namespace: bookinfo-project-think
 spec:
   channel: bookinfo-ch-preprod/bookinfo-preprod
-  name: bookinfo
-  packageFilter:
-    version: 1.0.8
   placement:
     placementRef:
       name: placementrule-preprod

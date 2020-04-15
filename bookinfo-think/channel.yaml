@@ -47,3 +47,12 @@ kind: ConfigMap
 metadata:
   name: insecure-skip-verify
   namespace:  bookinfo-ch-stagging
+
+---
+apiVersion: v1
+data:
+  insecureSkipVerify: "true"
+kind: ConfigMap
+metadata:
+  name: insecure-skip-verify
+  namespace:  bookinfo-ch-preprod
